@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 
+export const config = { runtime: 'edge' }
+
 export async function GET() {
   // TODO: return endpoint for list of Bedrock versions
   return NextResponse.json({

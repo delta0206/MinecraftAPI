@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 
 import { validateVersion } from '@/_libs/validation'
 
+export const config = { runtime: 'edge' }
+
 export async function GET(req: Request, { version }: { version: string }) {
   version = validateVersion(version)
 
