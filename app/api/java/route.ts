@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-export const config = { runtime: 'edge' }
+export const runtime = 'edge'
 
 export async function GET() {
   // TODO: return endpoint for list of Java versions
