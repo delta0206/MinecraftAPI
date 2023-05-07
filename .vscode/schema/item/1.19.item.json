@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "This is a JSON schema for describing item information in Minecraft.",
+  "definitions": {
+    "Language": {
+      "description": "This is a list of languages supported in Minecraft. These are the languages that are displayed in the game.",
+      "type": "string",
+      "enum": [
+        "en_us",
+        "ja_jp"
+      ]
+    },
+    "Rarity": {
+      "description": "This is a list of rarities set for each item.",
+      "type": "string",
+      "enum": [
+        "common",
+        "uncommon",
+        "rare",
+        "epic"
+      ]
+    }
+  },
+  "properties": {
+    "name": {
+      "description": "The name of the block. This must be unique and not empty. The prefix `minecraft:` is required. \nreference: https://minecraftitemids.com/",
+      "type": "string",
+      "pattern": "^minecraft:[a-z0-9_]+$"
+    },
+    "displayName": {
+      "description": "The display name of the item. This must be not empty. This property includes the language code as a key and the display name as a value. This must include the key \"en_us\".\nreference: https://minecraft.fandom.com/wiki/Block",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "$ref": "#/definitions/Language"
+      },
+      "required": [
+        "en_us"
+      ]
+    },
+    "stackSize": {
+      "description": "The maximum stack size of the item. This must be 1, 16, or 64.\nreference: https://minecraft.fandom.com/wiki/Stack#Stack_size",
+      "type": "number",
+      "enum": [
+        1,
+        16,
+        64
+      ]
+    },
+    "rarity": {
+      "description": "The rarity of the item. It can be one of \"common\", \"uncommon\", \"rare\", or \"epic\". \nreference: https://minecraft.fandom.com/wiki/Rarity",
+      "$ref": "#/definitions/Rarity"
+    }
+  },
+  "required": [
+    "name",
+    "displayName",
+    "stackSize",
+    "rarity"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["1.19*/blocks/*.block.json"],
+      "url": ".vscode/schema/block/1.19.block.json"
+    },
+    {
+      "fileMatch": ["1.19*/items/*.item.json"],
+      "url": ".vscode/schema/item/1.19.item.json"
+    },
+    {
+      "fileMatch": ["1.19*/recipes/*.recipe.json"],
+      "url": ".vscode/schema/recipe/1.19.recipe.json"
+    }
+  ]
+}

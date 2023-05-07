@@ -1,0 +1,21 @@
+{
+  "name": "minecraft:stone",
+  "displayName": {
+    "en_us": "Stone",
+    "ja_jp": "石"
+  },
+  "hardness": 1.5,
+  "stackSize": 64,
+  "harvestTools": [
+    "pickaxe"
+  ],
+  "resistance": 6,
+  "drops": [
+    {
+      "name": "minecraft:cobblestone",
+      "max": 1,
+      "min": 1
+    }
+  ],
+  "rarity": "common"
+}

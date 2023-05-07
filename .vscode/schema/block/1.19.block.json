@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "This is a JSON schema for describing block information in Minecraft.",
+  "definitions": {
+    "Language": {
+      "description": "This is a list of languages supported in Minecraft. These are the languages that are displayed in the game.",
+      "type": "string",
+      "enum": [
+        "en_us",
+        "ja_jp"
+      ]
+    },
+    "HarvestTool": {
+      "description": "This is a list of tools that can be used to break blocks.",
+      "type": "string",
+      "enum": [
+        "pickaxe",
+        "shovel",
+        "axe",
+        "hoe",
+        "shears",
+        "sword",
+        "brush"
+      ]
+    },
+    "Rarity": {
+      "description": "This is a list of rarities set for each block.",
+      "type": "string",
+      "enum": [
+        "common",
+        "uncommon",
+        "rare",
+        "epic"
+      ]
+    }
+  },
+  "properties": {
+    "name": {
+      "description": "The name of the block. This must be unique and not empty. The prefix `minecraft:` is required. \nreference: https://minecraftitemids.com/",
+      "type": "string",
+      "pattern": "^minecraft:[a-z0-9_]+$"
+    },
+    "displayName": {
+      "description": "The display name of the block. This must be not empty. This property includes the language code as a key and the display name as a value. This must include the key \"en_us\".\nreference: https://minecraft.fandom.com/wiki/Block",
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "$ref": "#/definitions/Language"
+      },
+      "required": [
+        "en_us"
+      ]
+    },
+    "hardness": {
+      "description": "The hardness of the block. This must be positive or \"Infinity\".\nreference: https://minecraft.fandom.com/wiki/Breaking#Blocks_by_hardness",
+      "type": [
+        "number",
+        "string"
+      ],
+      "minimum": 0,
+      "pattern": "^Infinity$"
+    },
+    "stackSize": {
+      "description": "The maximum stack size of the block. This must be 1, 16, or 64.\nreference: https://minecraft.fandom.com/wiki/Stack#Stack_size",
+      "type": "number",
+      "enum": [
+        1,
+        16,
+        64
+      ]
+    },
+    "resistance": {
+      "description": "The resistance of the block. This must be positive.\nreference: https://minecraft.fandom.com/wiki/Explosion#Blast_resistance",
+      "type": "number",
+      "minimum": 0
+    },
+    "harvestTools": {
+      "description": "The harvest tools of the block. It can be one of \"pickaxe\", \"shovel\", \"axe\", \"hoe\", \"shears\", \"sword\", or \"brush\". \nreference: https://minecraft.fandom.com/wiki/Breaking#Blocks_by_hardness",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/HarvestTool"
+      }
+    },
+    "rarity": {
+      "description": "The rarity of the block. It can be one of \"common\", \"uncommon\", \"rare\", or \"epic\". \nreference: https://minecraft.fandom.com/wiki/Rarity",
+      "$ref": "#/definitions/Rarity"
+    },
+    "drops": {
+      "description": "The drops of the block. This must be an array of objects. Each object must have \"id\", \"min\", and \"max\" properties. \"id\" must be the ID of the item. \"min\" and \"max\" must be the minimum and maximum number of drops.",
+      "type": "array",
+      "items": {
+        "properties": {
+          "name": {
+            "description": "The name of the block. This must be unique and not empty. The prefix `minecraft:` is required. \nreference: https://minecraftitemids.com/",
+            "type": "string",
+            "pattern": "^minecraft:[a-z0-9_]+$"
+          },
+          "min": {
+            "description": "The minimum number of drops. This must be positive.",
+            "type": "number",
+            "minimum": 1
+          },
+          "max": {
+            "description": "The maximum number of drops. This must be positive.",
+            "type": "number",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "name",
+          "min",
+          "max"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "name",
+    "displayName",
+    "hardness",
+    "stackSize",
+    "resistance",
+    "harvestTools",
+    "rarity",
+    "drops"
+  ],
+  "additionalProperties": false
+}

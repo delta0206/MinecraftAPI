@@ -1,0 +1,536 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "This is a JSON schema for describing recipe information in Minecraft.",
+  "definitions": {
+    "Type": {
+      "description": "The type of the recipe.",
+      "type": "string",
+      "enum": [
+        "minecraft:crafting_shaped",
+        "minecraft:crafting_shapeless",
+        "minecraft:smelting",
+        "minecraft:blasting",
+        "minecraft:smoking",
+        "minecraft:campfire_cooking",
+        "minecraft:stonecutting",
+        "minecraft:smithing",
+        "minecraft:crafting_special_armordye",
+        "minecraft:crafting_special_bannerduplicate",
+        "minecraft:crafting_special_bookcloning",
+        "minecraft:crafting_special_firework_rocket",
+        "minecraft:crafting_special_firework_star_fade",
+        "minecraft:crafting_special_firework_star",
+        "minecraft:crafting_special_mapcloning",
+        "minecraft:crafting_special_mapextending",
+        "minecraft:crafting_special_repairitem",
+        "minecraft:crafting_special_shielddecoration",
+        "minecraft:crafting_special_shulkerboxcoloring",
+        "minecraft:crafting_special_suspiciousstew",
+        "minecraft:crafting_special_tippedarrow"
+      ]
+    },
+    "Category": {
+      "description": "The category of the recipe. Can be one of the following: \"blocks\", \"building\", \"misc\", or \"redstone\".",
+      "type": "string",
+      "enum": [
+        "blocks",
+        "building",
+        "equipment",
+        "food",
+        "misc",
+        "redstone"
+      ]
+    },
+    "Group": {
+      "description": "The group of the recipe. Used to group recipes together in the recipe book.",
+      "type": "string",
+      "enum": [
+        "banner",
+        "bark",
+        "bed",
+        "black_dye",
+        "blue_dye",
+        "boat",
+        "bonemeal",
+        "brown_dye",
+        "carpet",
+        "chest_boat",
+        "coal",
+        "concrete_powder",
+        "copper_ingot",
+        "cyan_dye",
+        "diamond",
+        "dyed_bed",
+        "dyed_candle",
+        "emerald",
+        "gold_ingot",
+        "gray_dye",
+        "green_dye",
+        "iron_ingot",
+        "lapis_lazuli",
+        "light_blue_dye",
+        "light_gray_dye",
+        "lime_dye",
+        "magenta_dye",
+        "mossy_cobblestone",
+        "mossy_stone_bricks",
+        "netherite_ingot",
+        "orange_dye",
+        "pink_dye",
+        "planks",
+        "purple_dye",
+        "rabbit_stew",
+        "red_dye",
+        "redstone",
+        "stained_glass",
+        "stained_glass_pane",
+        "stained_terracotta",
+        "sticks",
+        "sugar",
+        "waxed_copper_block",
+        "waxed_cut_copper",
+        "waxed_cut_copper_slab",
+        "waxed_cut_copper_stairs",
+        "waxed_exposed_copper",
+        "waxed_exposed_cut_copper",
+        "waxed_exposed_cut_copper_slab",
+        "waxed_exposed_cut_copper_stairs",
+        "waxed_oxidized_copper",
+        "waxed_oxidized_cut_copper",
+        "waxed_oxidized_cut_copper_slab",
+        "waxed_oxidized_cut_copper_stairs",
+        "waxed_weathered_copper",
+        "waxed_weathered_cut_copper",
+        "waxed_weathered_cut_copper_slab",
+        "waxed_weathered_cut_copper_stairs",
+        "white_dye",
+        "wooden_button",
+        "wooden_door",
+        "wooden_fence",
+        "wooden_fence_gate",
+        "wooden_pressure_plate",
+        "wooden_sign",
+        "wooden_slab",
+        "wooden_stairs",
+        "wooden_trapdoor",
+        "wool",
+        "yellow_dye"
+      ]
+    }
+  },
+  "properties": {
+    "type": {
+      "$ref": "#/definitions/Type"
+    },
+    "category": {
+      "$ref": "#/definitions/Category"
+    },
+    "group": {
+      "$ref": "#/definitions/Group"
+    },
+    "key": {
+      "description": "The key for the recipe. Used to identify the recipe in-game.",
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "object",
+          "array"
+        ],
+        "additionalProperties": {
+          "type": "string",
+          "pattern": "^minecraft:[a-z0-9_]+$"
+        },
+        "items": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^minecraft:[a-z0-9_]+$"
+          }
+        }
+      }
+    },
+    "pattern": {
+      "description": "The pattern for the recipe. Used to determine the shape of the recipe.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "show_notification": {
+      "description": "Whether or not to show a notification when the recipe is unlocked.",
+      "type": "boolean"
+    },
+    "ingredient": {
+      "description": "The ingredient for the recipe. Used to determine what item is required to craft the recipe.",
+      "type": [
+        "object",
+        "array"
+      ],
+      "properties": {
+        "item": {
+          "type": "string",
+          "pattern": "^minecraft:[a-z0-9_]+$"
+        }
+      },
+      "items": {
+        "properties": {
+          "item": {
+            "type": "string",
+            "pattern": "^minecraft:[a-z0-9_]+$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "ingredients": {
+      "description": "The ingredients for the recipe. Used to determine what items are required to craft the recipe.",
+      "type": [
+        "object",
+        "array"
+      ],
+      "properties": {
+        "item": {
+          "type": "string",
+          "pattern": "^minecraft:[a-z0-9_]+$"
+        },
+        "tag": {
+          "type": "string",
+          "pattern": "^minecraft:[a-z0-9_]+$"
+        }
+      },
+      "additionalProperties": false,
+      "items": {
+        "properties": {
+          "item": {
+            "type": "string",
+            "pattern": "^minecraft:[a-z0-9_]+$"
+          },
+          "tag": {
+            "type": "string",
+            "pattern": "^minecraft:[a-z0-9_]+$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "result": {
+      "description": "The result of the recipe. Used to determine what item is crafted when the recipe is crafted.",
+      "type": [
+        "string",
+        "object"
+      ],
+      "properties": {
+        "item": {
+          "type": "string",
+          "pattern": "^minecraft:[a-z0-9_]+$"
+        },
+        "count": {
+          "type": "number",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "cookingtime": {
+      "description": "The time it takes for the recipe to cook. Used for smelting, blasting, and smoking recipes.",
+      "type": "number",
+      "minimum": 0
+    },
+    "experience": {
+      "description": "The amount of experience given when the recipe is crafted. Used for smelting, blasting, and smoking recipes.",
+      "type": "number",
+      "minimum": 0
+    },
+    "count": {
+      "description": "The amount of items crafted when the recipe is crafted. Used for stonecutting recipes.",
+      "type": "number",
+      "minimum": 1
+    },
+    "addition": {
+      "description": "The addition for the recipe. Used for smithing recipes.",
+      "type": "object",
+      "properties": {
+        "item": {
+          "type": "string",
+          "pattern": "^minecraft:[a-z0-9_]+$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "base": {
+      "description": "The base for the recipe. Used for smithing recipes.",
+      "type": "object",
+      "properties": {
+        "item": {
+          "type": "string",
+          "pattern": "^minecraft:[a-z0-9_]+$"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_shaped"
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "key",
+        "pattern",
+        "result",
+        "show_notification"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_shapeless"
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "ingredients",
+        "result"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:stonecutting"
+        }
+      },
+      "required": [
+        "type",
+        "count",
+        "ingredient",
+        "result"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_armordye"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:smelting"
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "cookingtime",
+        "ingredient",
+        "result",
+        "experience"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:campfire_cooking"
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "cookingtime",
+        "ingredient",
+        "result",
+        "experience"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:smoking"
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "cookingtime",
+        "ingredient",
+        "result",
+        "experience"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_bannerduplicate"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_bookcloning"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:blasting"
+        }
+      },
+      "required": [
+        "type",
+        "category",
+        "cookingtime",
+        "ingredient",
+        "result",
+        "experience"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_firework_rocket"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_firework_star_fade"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_firework_star"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_mapcloning"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_mapextending"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:smithing"
+        }
+      },
+      "required": [
+        "type",
+        "base",
+        "addition",
+        "result"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_repairitem"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_shielddecoration"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "minecraft:crafting_special_shulkerboxcoloring"
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "enum": [
+            "minecraft:crafting_special_suspiciousstew"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "enum": [
+            "minecraft:crafting_special_tippedarrow"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "category"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "minecraft:apple",
+  "displayName": {
+    "en_us": "Apple",
+    "ja_jp": "リンゴ"
+  },
+  "stackSize": 64,
+  "rarity": "common"
+}
