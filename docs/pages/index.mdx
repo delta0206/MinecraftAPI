@@ -1,0 +1,65 @@
+---
+title: RESTful Web API for Minecraft
+---
+
+import { Callout, Card, Cards } from 'nextra-theme-docs'
+
+<h1 className='text-center text-4xl tracking-tighter font-extrabold md:text-5xl mt-8'>
+  Minecraft API for Web
+</h1>
+
+This API allows you to easily retrieve information about Minecraft.
+
+<Callout emoji='✅'>
+  This is a <strong>consumption-only</strong> API — only the HTTP GET method is available on
+  resources.
+</Callout>
+
+This API does not require authentication, and all resources are completely open and available. There are no strict rate limits in place, but we hope that you limit the frequency of requests as sending a large number of requests in a short period of time can have a significant impact on the hosting server and increase costs.
+
+<Cards className='pt-6' num='1'>
+  <Card
+    className='border rounded-lg bg-green-100/50 dark:bg-green-900/50 border-green-100 dark:border-green-900 text-green-800 dark:text-green-200'
+    title='Get Start!'
+    href='/docs'
+    arrow
+  />
+</Cards>
+
+## Overview [#overview]
+
+You can get information about the stone in Java Edition 1.20 by accessing the API as follows.
+
+```bash
+GET https://api.minecraft.gammatrees.com/java/1.20/block/stone
+```
+
+Then, the following JSON data will be returned.
+
+```json
+{
+  "name": "minecraft:stone",
+  "displayName": {
+    "en_us": "Stone",
+    "ja_jp": "石"
+  },
+  "hardness": 1.5,
+  "stackSize": 64,
+  "harvestTools": ["pickaxe"],
+  "resistance": 6,
+  "drops": [
+    {
+      "name": "minecraft:cobblestone",
+      "max": 1,
+      "min": 1
+    }
+  ],
+  "rarity": "common"
+}
+```
+
+---
+
+Minecraft API for Web is created by delta0206, Follow [@delta0204](https://twitter.com/delta0204) on Twitter for any updates or questions.
+
+Feel free to join the [discussions on GitHub](https://github.com/delta0206/MinecraftAPI/issues)!

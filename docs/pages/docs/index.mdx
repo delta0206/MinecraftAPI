@@ -1,0 +1,75 @@
+import { Callout } from 'nextra-theme-docs'
+import Link from 'next/link'
+
+# Getting Started
+
+## Example [#example]
+
+You can get information about the stone in Java Edition 1.20 by accessing the API as follows.
+
+```bash
+GET https://api.minecraft.gammatrees.com/java/1.20/block/stone
+```
+
+Then, the following JSON data will be returned.
+
+```json
+{
+  "name": "minecraft:stone",
+  "displayName": {
+    "en_us": "Stone",
+    "ja_jp": "石"
+  },
+  "hardness": 1.5,
+  "stackSize": 64,
+  "harvestTools": ["pickaxe"],
+  "resistance": 6,
+  "drops": [
+    {
+      "name": "minecraft:cobblestone",
+      "max": 1,
+      "min": 1
+    }
+  ],
+  "rarity": "common"
+}
+```
+
+## Endpoints [#endpoints]
+
+We provide information on each version in both the Java Edition and the Bedrock Edition.
+
+- `https://api.minecraft.gammatrees.com/[edition]/[version]/[block]/[name]`
+- `https://api.minecraft.gammatrees/[edition]/[version]/[item]/[name]`
+- `https://api.minecraft.gammatrees/[edition]/[version]/[recipe]/[name]`
+
+Enter the corresponding string as shown below for each `[]`.
+
+| Directive name | Description                                                                                                                                    | Enum                                   |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| edition        | name of edition                                                                                                                                | `java` or `be`                         |
+| version        | name of version <br /> NOTE: In the Bedrock edition, we always return the latest version of the result regardless of the user's specification. | `1.20`, `1.19.2`, ...                  |
+| block          | name of block <br /> NOTE: You must specify the correct block ID.                                                                              | `stone`, `diamond_block`, ...          |
+| item           | name of item <br /> NOTE: You must specify the correct item ID.                                                                                | `wooden_sword`, `diamond_pickaxe`, ... |
+
+<Callout emoji='⚠️'>
+  Currently, Bedrock Edition is under development and some directives do not function.
+</Callout>
+
+If the last directive of the endpoint is omitted, it will return a list of endpoints that partially match it. For example, if you want to get the list of version endpoints, you can do the following request.
+
+```json filename="GET https://api.minecraft.gammatrees.com/java"
+{
+  "endpoints": [
+    {
+      "name": "1.0",
+      "url": "https://api.minecraft.gammatrees.com/java/1.0"
+    },
+    {
+      "name": "1.1",
+      "url": "https://api.minecraft.gammatrees.com/java/1.1"
+    },
+    ...
+  ]
+}
+```
